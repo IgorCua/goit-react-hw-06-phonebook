@@ -4,6 +4,7 @@ import React, { useRef, useEffect, useState } from "react";
 import style from "./Phonebook.module.css";
 import { PhonebookForm } from "./PhonebookForm/PhonebookForm";
 import { ContactsList } from "./ContactsList/ContactsList";
+import { useSelector } from "react-redux";
 
 export const Phonebook = (props) => {
  
@@ -30,59 +31,58 @@ export const Phonebook = (props) => {
     
     // console.log('prevState: ', prevContacts,'currState: ', contacts)
 
-    const addContact = (nameVal, numVal) => {
-        setContacts((elem) =>{
-            return [...elem, {id: nanoid(10), name: nameVal, number: numVal}]
-        })
-    }
+    // const addContact = (nameVal, numVal) => {
+    //     setContacts((elem) =>{
+    //         return [...elem, {id: nanoid(10), name: nameVal, number: numVal}]
+    //     })
+    // }
 
-    const handleSubmit = (evt) => {
-        evt.preventDefault();
+    // const handleSubmit = (evt) => {
+    //     evt.preventDefault();
 
-        const nameVal = evt.target.name.value;
-        const numVal = evt.target.number.value;
-        const regex = new RegExp(`\\b${nameVal}\\b`, 'i');
+    //     const nameVal = evt.target.name.value;
+    //     const numVal = evt.target.number.value;
+    //     const regex = new RegExp(`\\b${nameVal}\\b`, 'i');
         
-        for (let element of contacts) {
-            if (regex.test(element.name)) {
-                alert(`${element.name} is already in contacts.`)
-                return;
-            }
-        }
+    //     for (let element of contacts) {
+    //         if (regex.test(element.name)) {
+    //             alert(`${element.name} is already in contacts.`)
+    //             return;
+    //         }
+    //     }
         
-        addContact(nameVal, numVal);
-        evt.target.name.value = '';
-        evt.target.number.value = '';
-    }
+    //     addContact(nameVal, numVal);
+    //     evt.target.name.value = '';
+    //     evt.target.number.value = '';
+    // }
 
-    const handleFilterChange = (evt) => {
-        const name = evt.target.value.toLowerCase();
-        setFilter(name)
-    }
+    // const handleFilterChange = (evt) => {
+    //     const name = evt.target.value.toLowerCase();
+    //     setFilter(name)
+    // }
 
-    const searchByName = (evt) => {
-        if(contacts.length === 0) return;
-        return contacts.filter((elem) => {
-            return elem.name.toLowerCase().includes(filter)
-        })
+    // const searchByName = (evt) => {
+    //     if(contacts.length === 0) return;
+    //     return contacts.filter((elem) => {
+    //         return elem.name.toLowerCase().includes(filter)
+    //     })
        
-    }
+    // }
 
-    const deleteFromContacts = (evt) => {
-        const elemId = evt.target.parentElement.id;
+    // const deleteFromContacts = (evt) => {
+    //     const elemId = evt.target.parentElement.id;
         
-        setContacts(contacts.filter(elem => {
-            return elem.id !== elemId
-        }))
-    }
+    //     setContacts(contacts.filter(elem => {
+    //         return elem.id !== elemId
+    //     }))
+    // }
 
     return <section>
         <h1 className={style.title}>Phonebook</h1>
-        <PhonebookForm contacts={contacts} handleSubmit={handleSubmit}/>   
+        <PhonebookForm/>   
         <ContactsList 
-            searchByName={searchByName}
-            handleFilterChange={handleFilterChange}
-            deleteFromContacts={deleteFromContacts}
+            // searchByName={searchByName}
+           
         >
         </ContactsList >
     </section>
