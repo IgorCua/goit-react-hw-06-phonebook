@@ -1,7 +1,11 @@
 import style from "./ContactsList.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { getContacts, getFilter } from "components/redux/contactsList/selectors";
-import { filterAction, deleteContact } from "components/redux/contactsList/actions";
+// import { filterAction, deleteContact } from "components/redux/contactsList/actions";
+// import { deleteContact } from "components/redux/contactsList/actions";
+import { deleteContact } from "components/redux/phonebookForm/phonebookSlice";
+import { filterAction } from "components/redux/contactsList/contactsListSlice";
+import localStorage from "redux-persist/es/storage";
 
 export const ContactsList = (props) => {
     // const {searchByName, handleFilterChange, deleteFromContacts} = props;
@@ -10,8 +14,9 @@ export const ContactsList = (props) => {
     const dispatch = useDispatch();
     // const filtered = searchByName();
     // console.log("Contactlist");
-    console.log(contacts);
-    console.log(filter);
+    // console.log(contacts);
+    // console.log(filter);
+    console.log(localStorage)
 
     const filteredContacts = () => {
         if(contacts.length === 0) return;

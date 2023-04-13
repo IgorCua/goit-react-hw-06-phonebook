@@ -1,23 +1,21 @@
 import style from "./PhonebookForm.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { getContacts } from "components/redux/contactsList/selectors";
-import { addContact } from "components/redux/phonebookForm/actions";
+// import { addContact } from "components/redux/phonebookForm/actions";
+import { addContact } from "components/redux/phonebookForm/phonebookSlice";
 
 export const PhonebookForm = (props) => {
     // const {handleSubmit} = props;
     const contacts = useSelector(getContacts);
     const dispatch = useDispatch();
 
-    function test() {
-        console.log('test')
-    }
     const handleSubmit = (evt) => {
         evt.preventDefault();
 
         const nameVal = evt.target.name.value;
         const numVal = evt.target.number.value;
         const regex = new RegExp(`\\b${nameVal}\\b`, 'i');
-        console.log("handleSubmit ", nameVal, numVal);
+        // console.log("handleSubmit ", nameVal, numVal);
         for (let element of contacts) {
             console.log('handlesubmir for ', element)
             if (regex.test(element.name)) {

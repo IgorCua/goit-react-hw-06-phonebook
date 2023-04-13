@@ -1,11 +1,9 @@
-import { useState } from "react";
 import { Phonebook } from "./Phonebook/Phonebook";
 
 export const App = () => {
-  const [contacts, setContacts] = useState(() => {
-    return localStorage.contacts !== undefined ? JSON.parse(localStorage.contacts) : []
-  }) 
 
+  // console.log('App', localStorage)
+  // localStorage.clear()
   return <div
     style={{
       height: '100vh',
@@ -16,6 +14,6 @@ export const App = () => {
       color: '#010101'
     }}
   >
-    <Phonebook contacts={contacts} setContacts={setContacts}/>
+    <Phonebook/>
   </div>
 }
